@@ -25,9 +25,20 @@ document.getElementById("add-money-button")
     if (pinNumber === 1234) {
       let total = outFieldById("main-balance") + inputFieldById("amount-input-number");
       document.getElementById("main-balance").innerText = total;
+      let entryCash = inputFieldById("amount-input-number");
+      let div = document.createElement('div');
+      div.classList.add("bg-pink-300");
+      div.classList.add("mt-3");
+      div.classList.add("p-3");
+      div.classList.add("rounded-lg");
+      div.innerHTML = `
+       <h5 class="text-xl font-bold">Cash In</h5>
+       <p>${entryCash} Cash in . New balance : ${total}</p>
+      `;
+      document.getElementById("transfer-history-div").appendChild(div);
     }
     else {
-        alert('invalid pin number')     
+      alert('invalid pin number')     
     }
       
 });
@@ -40,25 +51,26 @@ document.getElementById("cash-out-button")
     const pinNumber = inputFieldById("cash-input-pin-number");
 
     if (pinNumber === 1234) {
-      let total =
-        outFieldById("main-balance") -
-        inputFieldById("cash-input-amount-number");
+      let total = outFieldById("main-balance") - inputFieldById("cash-input-amount-number");
       document.getElementById("main-balance").innerText = total;
+
+      let entry = inputFieldById("cash-input-amount-number");
+      let div = document.createElement("div");
+      div.classList.add('bg-yellow-300');
+      div.classList.add('mt-3');
+      div.classList.add('p-3');
+      div.classList.add("rounded-lg");
+      div.innerHTML = ` 
+        <h5 class="text-xl font-bold">Cash Out</h5>
+        <p>${entry} withdraw .New balance : ${total}</p>
+      `;
+      document.getElementById("transfer-history-div").appendChild(div);
     }
     else {
         alert('Invalid pin number')     
     }
       
 });
-
-
-/* transfer div design start */
-let p = document.createElement('p');
-let text = document.createTextNode('add money');
-p.appendChild(text);
-document.getElementById("transfer-history-div").appendChild(p);
-
-
 
 
 /* button click and then show the target element */
